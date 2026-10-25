@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBurguer | Lanchonete & Simulador</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho Principal -->
+    <header class="main-header">
+        <div class="header-container">
+            <h1>🍔 DevBurguer</h1>
+            <p>Onde o seu código vira sabor! Lanches rápidos e personalizáveis.</p>
+        </div>
+    </header>
+
+    <!-- Conteúdo do Simulador -->
+    <main class="menu-container">
+        <section class="instructions-card">
+            <h2>Simulador de Compras</h2>
+            <p>Monte o seu pedido informando a quantidade desejada de cada item no nosso estoque.</p>
+            <button class="btn-simulate" onclick="simularCompra()">⚡ Iniciar Simulação</button>
+        </section>
+
+        <!-- Grade de Produtos (Mínimo de 3 exigidos) -->
+        <section class="products-grid">
+            
+            <div class="product-card">
+                <div class="product-badge">Mais Vendido</div>
+                <h3>Stack Burger</h3>
+                <p class="product-desc">Blend bovino de 150g, muito queijo cheddar, bacon crocante e molho artesanal.</p>
+                <span class="product-price">R$ 32,00</span>
+            </div>
+
+            <div class="product-card">
+                <h3>Batata🍟.zip</h3>
+                <p class="product-desc">Porção de batatas fritas super crocantes com tempero especial da casa.</p>
+                <span class="product-price">R$ 14,00</span>
+            </div>
+
+            <div class="product-card">
+                <h3>Refri Co-Pilot</h3>
+                <p class="product-desc">Lata de refrigerante trincando de gelada para acompanhar seu combo.</p>
+                <span class="product-price">R$ 6,00</span>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Rodapé Oficial Exigido pelo Desafio -->
+    <footer class="main-footer">
+        <p>Desenvolvido por: S Henrique Jr | Trilha Desenvolvimento Mobile</p>
+        <p class="footer-platform">Desafio 1 — Plataforma Mais Robotic</p>
+    </footer>
+
+    <!-- Script de Simulação -->
+    <script src="script.js"></script>
+</body>
+</html>

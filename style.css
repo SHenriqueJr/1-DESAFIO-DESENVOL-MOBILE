@@ -1,0 +1,149 @@
+/* Configurações Globais e Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+    --primary-color: #ff4757;
+    --secondary-color: #2ed573;
+    --dark-color: #2f3542;
+    --light-bg: #f1f2f6;
+    --card-bg: #ffffff;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--dark-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+.main-header {
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+    color: white;
+    text-align: center;
+    padding: 3rem 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Container Principal */
+.menu-container {
+    flex: 1;
+    max-width: 1100px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+/* Card de Instruções */
+.instructions-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 3rem;
+    border-top: 5px solid var(--primary-color);
+}
+
+.instructions-card h2 {
+    margin-bottom: 0.5rem;
+}
+
+.btn-simulate {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1.2rem;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-simulate:hover {
+    background-color: #26af5f;
+    transform: scale(1.03);
+}
+
+/* Grid de Produtos */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: y 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #ffa502;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+}
+
+.product-card h3 {
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+}
+
+.product-desc {
+    color: #747d8c;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+}
+
+.product-price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Rodapé */
+.main-footer {
+    background-color: var(--dark-color);
+    color: #a4b0be;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: auto;
+}
+
+.footer-platform {
+    font-size: 0.8rem;
+    color: #747d8c;
+}
