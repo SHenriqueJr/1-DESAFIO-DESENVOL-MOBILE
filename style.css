@@ -147,3 +147,11 @@ body {
     font-size: 0.8rem;
     color: #747d8c;
 }
+/*AQUI SE ENCONTRA A REGRA DAS IMAGENS*/
+.product-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /*Faz a imagem cortar certinho sem distorcer ou esticar*/
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
