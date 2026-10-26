@@ -13,7 +13,7 @@ const PRODUTOS_CADASTRADOS = [
         id: 2,
         nome: "Batata|Git Smash médio",
         preco: 28.00,
-        descricao: "Batata suculenta com molho especial da casa.",
+        descricao: "Porção de batatas fritas super crocantes com tempero especial.",
         imagem: "assets/batata.jpeg",
         badge: ""
     },
@@ -127,7 +127,7 @@ function finalizarPedido() {
         return;
     }
 
-    let resumoTexto = "🍔 PEDIDO ENVIADO PARA A COZINHA!\n\nItens selecionados:\n";
+    let resumoTexto = "PEDIDO ENVIADO PARA A COZINHA!\n\nItens selecionados:\n";
     carrinho.forEach(item => {
         resumoTexto += `• ${item.nome} (${item.quantidade}x)\n`;
     });
