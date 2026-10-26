@@ -1,57 +1,141 @@
-/**
- * Lógica do Simulador de Compras da Lanchonete DevBurguer
- * Desenvolvido para o Desafio 1 - Trilhas 3ª Edição
- */
+// 1. BANCO DE DADOS DOS PRODUTOS (Personalizável para o futuro)
+// Para adicionar um novo item, basta adicionar um novo objeto {} aqui dentro!
+const PRODUTOS_CADASTRADOS = [
+    {
+        id: 1,
+        nome: "Stack Burger",
+        preco: 32.00,
+        descricao: "Blend bovino de 150g, muito queijo cheddar derretido e bacon crocante.",
+        imagem: "assets/burguer.png",
+        badge: "Mais Vendido"
+    },
+    {
+        id: 2,
+        nome: "Batata|Git Smash médio",
+        preco: 28.00,
+        descricao: "Batata suculenta com molho especial da casa.",
+        imagem: "assets/batata.jpeg",
+        badge: ""
+    },
+    {
+        id: 3,
+        nome: "Dev Bacon",
+        preco: 35.00,
+        descricao: "Hambúrguer artesanal, fatias generosas de bacon premium e molho barbecue.",
+        imagem: "https://githubusercontent.com",
+        badge: "Novo"
+    },
+    {
+        id: 4,
+        nome: "Refri Co-Pilot",
+        preco: 6.00,
+        descricao: "Lata de refrigerante trincando de gelada para acompanhar seu combo.",
+        imagem: "assets/refri-coca.jpeg",
+        badge: ""
+    }
+];
 
-function simularCompra() {
-    // 1. Definição estrita dos preços internos (IDÊNTICOS aos preços exibidos no HTML)
-    const PRECO_BURGER = 32.00;
-    const PRECO_BATATA = 14.00;
-    const PRECO_REFRI = 6.00;
+// Estado da memória (Carrinho Vazio)
+let carrinho = [];
 
-    // 2. Coleta de dados usando prompt() e conversão explícita com Number()
-    let qtdBurger = Number(prompt("Quantos 'Stack Burgers' (R$ 32,00) você deseja adiconar ao carrinho?"));
-    let qtdBatata = Number(prompt("Quantas 'Batatas .zip' (R$ 14,00) você deseja?"));
-    let qtdRefri = Number(prompt("Quantos 'Refris Co-Pilot' (R$ 6,00) você deseja?"));
+// 2. FUNÇÃO QUE INJETA OS PRODUTOS NA TELA (Manipulação do DOM)
+function renderizarCardapio() {
+    const gridProdutos = document.getElementById('products-grid');
+    gridProdutos.innerHTML = ''; // Limpa o grid
 
-    // Tratamento e higienização das entradas (Evita bugs se o usuário digitar letras ou valores negativos)
-    if (isNaN(qtdBurger) || qtdBurger < 0) qtdBurger = 0;
-    if (isNaN(qtdBatata) || qtdBatata < 0) qtdBatata = 0;
-    if (isNaN(qtdRefri) || qtdRefri < 0) qtdRefri = 0;
+    PRODUTOS_CADASTRADOS.forEach(produto => {
+        const card = document.createElement('div');
+        card.classList.add('product-card');
+        
+        // Se o produto tiver badge (Ex: Mais Vendido), adiciona a tag na tela
+        const badgeHTML = produto.badge ? `<div class="product-badge">${produto.badge}</div>` : '';
 
-    // 3. Verificação de carrinho vazio (Regra do Desafio)
-    if (qtdBurger === 0 && qtdBatata === 0 && qtdRefri === 0) {
-        alert("Nenhum produto foi selecionado. A simulação foi encerrada.");
+        card.innerHTML = `
+            ${badgeHTML}
+            <img src="${produto.imagem}" alt="${produto.nome}" class="product-img">
+            <h3>${produto.nome}</h3>
+            <p class="product-desc">${produto.descricao}</p>
+            <div class="product-control">
+                <span class="product-price">R$ ${produto.preco.toFixed(2)}</span>
+                <button class="btn-add" onclick="adicionarAoCarrinho('${produto.nome}', ${produto.preco})">+ Adicionar</button>
+            </div>
+        `;
+        gridProdutos.appendChild(card);
+    });
+}
+
+// 3. LOGICA DO CARRINHO DE COMPRAS
+function adicionarAoCarrinho(nomeItem, precoItem) {
+    const itemExistente = carrinho.find(item => item.nome === nomeItem);
+
+    if (itemExistente) {
+        itemExistente.quantidade += 1;
+    } else {
+        carrinho.push({ nome: nomeItem, preco: precoItem, quantidade: 1 });
+    }
+    atualizarInterfaceCarrinho();
+}
+
+function removerDoCarrinho(nomeItem) {
+    const itemIndex = carrinho.findIndex(item => item.nome === nomeItem);
+
+    if (itemIndex > -1) {
+        carrinho[itemIndex].quantidade -= 1;
+        if (carrinho[itemIndex].quantidade === 0) {
+            carrinho.splice(itemIndex, 1);
+        }
+    }
+    atualizarInterfaceCarrinho();
+}
+
+function atualizarInterfaceCarrinho() {
+    const containerItens = document.getElementById('cart-items');
+    const elementoTotal = document.getElementById('cart-total');
+    
+    containerItens.innerHTML = '';
+
+    if (carrinho.length === 0) {
+        containerItens.innerHTML = '<p class="empty-message">Seu carrinho está vazio...</p>';
+        elementoTotal.innerText = 'R$ 0,00';
         return;
     }
 
-    // 4. Cálculos matemáticos de valores individuais
-    let subtotalBurger = qtdBurger * PRECO_BURGER;
-    let subtotalBatata = qtdBatata * PRECO_BATATA;
-    let subtotalRefri = qtdRefri * PRECO_REFRI;
+    let valorTotalAcumulado = 0;
 
-    // Cálculo do montante total
-    let totalCompra = subtotalBurger + subtotalBatata + subtotalRefri;
+    carrinho.forEach(item => {
+        const subtotalItem = item.preco * item.quantidade;
+        valorTotalAcumulado += subtotalItem;
 
-    // 5. Estruturação profissional e exibição do Recibo via alert()
-    let cupomFiscal = "===================================\n";
-    cupomFiscal += "         🍟 DEVBURGUER RECIBO 🍟     \n";
-    cupomFiscal += "===================================\n\n";
+        const divItem = document.createElement('div');
+        divItem.classList.add('cart-item');
+        divItem.innerHTML = `
+            <div class="cart-item-info">
+                <h4>${item.nome}</h4>
+                <span>${item.quantidade}x - R$ ${item.preco.toFixed(2)}</span>
+            </div>
+            <button class="btn-remove" onclick="removerDoCarrinho('${item.nome}')">Remover</button>
+        `;
+        containerItens.appendChild(divItem);
+    });
 
-    if (qtdBurger > 0) {
-        cupomFiscal += `• Stack Burger: ${qtdBurger}x | R$ ${subtotalBurger.toFixed(2)}\n`;
-    }
-    if (qtdBatata > 0) {
-        cupomFiscal += `• Batata .zip: ${qtdBatata}x | R$ ${subtotalBatata.toFixed(2)}\n`;
-    }
-    if (qtdRefri > 0) {
-        cupomFiscal += `• Refri Co-Pilot: ${qtdRefri}x | R$ ${subtotalRefri.toFixed(2)}\n`;
-    }
-
-    cupomFiscal += "\n-----------------------------------\n";
-    cupomFiscal += `TOTAL DA COMPRA: R$ ${totalCompra.toFixed(2)}\n`;
-    cupomFiscal += "===================================\n";
-    cupomFiscal += "Obrigado por usar nosso simulador dev!";
-
-    alert(cupomFiscal);
+    elementoTotal.innerText = `R$ ${valorTotalAcumulado.toFixed(2)}`;
 }
+
+function finalizarPedido() {
+    if (carrinho.length === 0) {
+        alert("O seu carrinho está vazio!");
+        return;
+    }
+
+    let resumoTexto = "🍔 PEDIDO ENVIADO PARA A COZINHA!\n\nItens selecionados:\n";
+    carrinho.forEach(item => {
+        resumoTexto += `• ${item.nome} (${item.quantidade}x)\n`;
+    });
+
+    alert(resumoTexto);
+    carrinho = [];
+    atualizarInterfaceCarrinho();
+}
+
+// Inicializa o cardápio na tela assim que o script carrega
+renderizarCardapio();

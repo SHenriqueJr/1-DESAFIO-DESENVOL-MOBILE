@@ -17,45 +17,35 @@
     </header>
 
     <!-- Conteúdo do Simulador -->
-    <main class="menu-container">
-        <section class="instructions-card">
-            <h2>Simulador de Compras</h2>
-            <p>Monte o seu pedido informando a quantidade desejada de cada item no nosso estoque.</p>
-            <button class="btn-simulate" onclick="simularCompra()">⚡ Iniciar Simulação</button>
-        </section>
+        <!-- Layout Principal -->
+    <div class="shop-container">
+        
+        <!-- Vitrine de Produtos Gerada Dinamicamente pelo JS -->
+        <main class="products-section">
+            <h2> Nosso Cardápio Dev</h2>
+            <div id="products-grid" class="products-grid">
+                <!-- O JavaScript vai injetar os hambúrgueres e bebidas aqui dentro automaticamente -->
+            </div>
+        </main>
 
-        <!-- Grade de Produtos (Mínimo de 3 exigidos) -->
-        <!-- Grade de Produtos Atualizada com Imagens -->
-        <section class="products-grid">
-            
-            <div class="product-card">
-                <div class="product-badge">Mais Vendido</div>
-                <!-- Imagem do Hambúrguer -->
-                <img src="assets/burguer.png" alt="Stack Burger" class="product-img">
-                <h3>Stack Burger</h3>
-                <p class="product-desc">Blend bovino de 150g, muito queijo cheddar, bacon crocante e molho artesanal.</p>
-                <span class="product-price">R$ 32,00</span>
+        <!-- Barra Lateral do Carrinho -->
+        <aside class="cart-aside">
+            <h2>🛒 Meu Carrinho</h2>
+            <div id="cart-items" class="cart-items-container">
+                <p class="empty-message">Seu carrinho está vazio...</p>
             </div>
 
-            <div class="product-card">
-                <!-- Imagem da Batata -->
-                <img src="assets/batata.jpeg" alt="Batata.zip" class="product-img">
-                <h3>Batata.zip</h3>
-                <p class="product-desc">Porção de batatas fritas super crocantes com tempero especial da casa.</p>
-                <span class="product-price">R$ 14,00</span>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Total:</span>
+                    <span id="cart-total" class="total-highlight">R$ 0,00</span>
+                </div>
+                <button class="btn-checkout" onclick="finalizarPedido()">Finalizar Pedido</button>
             </div>
+        </aside>
 
-            <div class="product-card">
-                <!-- Imagem do Refrigerante -->
-                <img src="assets/refri-coca.jpeg" alt="Refri Co-Pilot" class="product-img">
-                <h3>Refri Co-Pilot</h3>
-                <p class="product-desc">Lata de refrigerante trincando de gelada para acompanhar seu combo.</p>
-                <span class="product-price">R$ 6,00</span>
-            </div>
+    </div>
 
-        </section>
-
-    </main>
 
     <!-- Rodapé Oficial Exigido pelo Desafio -->
     <footer class="main-footer">
