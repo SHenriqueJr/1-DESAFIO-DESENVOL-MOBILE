@@ -5,7 +5,7 @@ const PRODUTOS_CADASTRADOS = [
         id: 1,
         nome: "Stack Burger",
         preco: 32.00,
-        descricao: "Blend bovino de 150g, muito queijo cheddar derretido e bacon crocante.",
+        descricao: "Blend bovino de 150g, tomate, alface e muito queijo cheddar derretido com o molho especial da casa.",
         imagem: "assets/burguer.png",
         badge: "Mais Vendido"
     },
@@ -21,7 +21,7 @@ const PRODUTOS_CADASTRADOS = [
         id: 3,
         nome: "Dev Bacon",
         preco: 35.00,
-        descricao: "Hambúrguer artesanal, fatias generosas de bacon premium e molho barbecue.",
+        descricao: "Fatias generosas de bacon premium e molho barbecue.",
         imagem: "assets/bacon.jpeg",
         badge: "Novo"
     },
@@ -128,6 +128,23 @@ function finalizarPedido() {
     }
     // Redireciona o usuário diretamente para a nova página de sucesso
     window.location.href = "confirmacao.html";
+}
+/*Altera o tema visual do site entre Claro e Escuro*/
+function alternarTema() {
+    // Liga/Desliga a classe 'dark-mode' na tag <body> mostrado na aula 7
+    document.body.classList.toggle('dark-mode');
+    
+    // Boa prática extra: Salva a escolha do usuário na memória do navegador (LocalStorage)
+    if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('tema-preferido', 'dark');
+    } else {
+        localStorage.setItem('tema-preferido', 'light');
+    }
+}
+
+// Verifica se o usuário já tinha escolhido o tema escuro antes ao carregar a página SDE TIRAR DAQUI ACOMPANHA a Function alternarTema
+if (localStorage.getItem('tema-preferido') === 'dark') {
+    document.body.classList.add('dark-mode');
 }
 
 // Inicializa o cardápio na tela assim que o script carrega

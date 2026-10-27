@@ -6,13 +6,70 @@
     font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
+/* --- CONFIGURAÇÕES DE TEMA DA AULA 7 CSS --- */
 :root {
+    /* Cores padrão do Tema Claro */
     --primary: #ff4757;
     --secondary: #2ed573;
     --dark: #2f3542;
     --bg: #f1f2f6;
-    --card: #ffffff;
+    --card: #e4dada;
+    --text: #2f3542;
+    --border: #f1f2f6;
 }
+
+/* Quando o body tiver a classe .dark-mode, essas cores vão sobrescrever as de cima */
+body.dark-mode {
+    --dark: #9fa7ca;
+    --bg: #1e222b;
+    --card: #2f3542;
+    --text: #f1f2f6;
+    --border: #3f4654;
+}
+
+/* Aplicando a cor do texto global dinamicamente */
+body {
+    background-color: var(--bg);
+    color: var(--text); /*Atualizado para mudar de cor no tema escuro */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s; /*Transição suave ao mudar de tema*/
+}
+
+/*Ajuste nos cards para respeitarem as novas cores de texto e borda*/
+.product-card, .cart-aside {
+    background: var(--card);
+    color: var(--text);
+}
+.product-desc {
+    color: var(--text);
+    opacity: 0.8; /*Deixa o texto sutil em ambos os temas */
+}
+.cart-item {
+    border-bottom: 1px solid var(--border);
+}
+
+/*Estilo do Botão Flutuante de Tema*/
+.btn-theme {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: var(--dark);
+    color: white;
+    border: 2px solid var(--primary);
+    padding: 0.6rem 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+.btn-theme:hover {
+    transform: scale(1.05);
+}
+
 
 body {
     background-color: var(--bg);
@@ -41,9 +98,9 @@ body {
     width: 100%;
 }
 
-/* Seção de Lanches */
+/*Seção de Lanches*/
 .products-section {
-    flex: 3; /* Ocupa a maior parte da tela */
+    flex: 3; /*Ocupa a maior parte da tela*/
 }
 
 .products-section h2 {
@@ -139,7 +196,7 @@ body {
     background: var(--primary);
 }
 
-/* Fix da Barra Lateral do Carrinho */
+/*Fix da Barra Lateral do Carrinho*/
 .cart-aside {
     flex: 1; /* Ocupa o espaço menor da direita */
     min-width: 320px;
