@@ -120,21 +120,14 @@ function atualizarInterfaceCarrinho() {
 
     elementoTotal.innerText = `R$ ${valorTotalAcumulado.toFixed(2)}`;
 }
-
 function finalizarPedido() {
+    // Verifica se o carrinho está vazio antes de avançar
     if (carrinho.length === 0) {
-        alert("O seu carrinho está vazio!");
+        alert("O seu carrinho está vazio! Adicione itens antes de fechar o pedido.");
         return;
     }
-
-    let resumoTexto = "PEDIDO ENVIADO PARA A COZINHA!\n\nItens selecionados:\n";
-    carrinho.forEach(item => {
-        resumoTexto += `• ${item.nome} (${item.quantidade}x)\n`;
-    });
-
-    alert(resumoTexto);
-    carrinho = [];
-    atualizarInterfaceCarrinho();
+    // Redireciona o usuário diretamente para a nova página de sucesso
+    window.location.href = "confirmacao.html";
 }
 
 // Inicializa o cardápio na tela assim que o script carrega
