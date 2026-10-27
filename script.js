@@ -22,7 +22,7 @@ const PRODUTOS_CADASTRADOS = [
         nome: "Dev Bacon",
         preco: 35.00,
         descricao: "Hambúrguer artesanal, fatias generosas de bacon premium e molho barbecue.",
-        imagem: "https://githubusercontent.com",
+        imagem: "assets/bacon.jpeg",
         badge: "Novo"
     },
     {
