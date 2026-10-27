@@ -46,7 +46,7 @@ A **DevBurguer** é uma lanchonete temática voltada para a comunidade de tecnol
 
 
 3. Página de confirmação de pedido
-![alt text](image.png)
+![alt text](assets/print-3.png)
 
 ###  Testes Realizados
 
