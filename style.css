@@ -298,3 +298,18 @@ body {
     padding: 1.2rem;
     margin-top: auto;
 }
+
+/*Regra para colocar tema na pagina secundaria*/
+.success-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    background: var(--card); /*Atualizado para usar a variável*/
+    color: var(--text);      /*Atualizado para o texto mudar de cor*/
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 6px solid var(--secondary);
+    transition: background-color 0.3s, color 0.3s;
+}
+

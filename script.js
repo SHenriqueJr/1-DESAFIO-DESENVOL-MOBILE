@@ -41,6 +41,9 @@ let carrinho = [];
 // 2. FUNÇÃO QUE INJETA OS PRODUTOS NA TELA (Manipulação do DOM)
 function renderizarCardapio() {
     const gridProdutos = document.getElementById('products-grid');
+    /* Se o elemento não existir na página atual (como na tela de confirmação), para a execução aqui*/
+    if (!gridProdutos) return; 
+
     gridProdutos.innerHTML = ''; // Limpa o grid
 
     PRODUTOS_CADASTRADOS.forEach(produto => {
